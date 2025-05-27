@@ -1,27 +1,7 @@
 import Link from "next/link";
-import { type SanityDocument } from "next-sanity";
-
-import { client } from "@/app/sanity/client";
-import { FaGithub } from "react-icons/fa";
-import { FaMessage } from "react-icons/fa6";
-import {
-  PiChat,
-  PiGithubLogo,
-  PiScroll,
-  PiScrollDuotone,
-  PiShootingStar,
-} from "react-icons/pi";
-
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
-
-const options = { next: { revalidate: 30 } };
+import { PiChat, PiGithubLogo, PiScroll, PiShootingStar } from "react-icons/pi";
 
 export default async function IndexPage() {
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
-
   return (
     <main className="container mx-auto h-full flex flex-col justify-center ">
       <section
