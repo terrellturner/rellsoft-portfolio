@@ -32,7 +32,7 @@ export default async function IndexPage() {
             </h3>
             <div className="w-full flex flex-row leading-0 flex-wrap md:flex-nowrap justify-center lg:justify-around lg:max-w-lg">
               <button className="bg-rellsoft-green text-zinc-950 border flex flex-row m-1.5 lg:m-1 lg:ml-0 ml-0 justify-center items-center space-x-1 hover:border-zinc-100 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-300 hover:text-zinc-950">
-                <span>Let's Talk</span>
+                <span>Let&apos;s Talk</span>
                 <PiVideoCamera className="text-lg" />
               </button>
               <button className="bg-zinc-900 text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-300 hover:text-zinc-950">
