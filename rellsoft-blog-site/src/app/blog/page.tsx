@@ -12,7 +12,8 @@ export type Post = {
 };
 
 type Props = {
-  searchParams?: {
+  params: Record<string, never>;
+  searchParams: {
     category?: string;
   };
 };

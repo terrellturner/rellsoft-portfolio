@@ -32,7 +32,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
           loop={1}
           cursor={true}
           cursorBlinking={true}
-          cursorColor="oklch(0.8415 0.2273 150.21);"
+          cursorColor="oklch(0.8415 0.2273 150.21)"
         />
         {categorySlug ? `tagged with "${categorySlug}"` : ""}
       </h1>
