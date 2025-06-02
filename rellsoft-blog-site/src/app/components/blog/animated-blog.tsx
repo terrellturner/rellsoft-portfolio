@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { Typewriter } from "react-simple-typewriter";
 
 interface Post {
   _id: string;
@@ -26,7 +27,14 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
     >
       <Link href="/">← Home</Link>
       <h1 className="text-4xl font-bold mb-8">
-        Posts {categorySlug ? `tagged with "${categorySlug}"` : ""}
+        <Typewriter
+          words={[`@/brain/archive`]}
+          loop={1}
+          cursor={true}
+          cursorBlinking={true}
+          cursorColor="oklch(0.8415 0.2273 150.21);"
+        />
+        {categorySlug ? `tagged with "${categorySlug}"` : ""}
       </h1>
       <ul className="flex flex-col gap-y-4">
         {posts.map((post) => (

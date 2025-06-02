@@ -11,10 +11,14 @@ export type Post = {
   publishedAt: string;
 };
 
-export default async function BlogPage(props: {
-  searchParams?: { category?: string };
-}) {
-  const resolvedSearchParams = await props.searchParams;
+type Props = {
+  searchParams?: {
+    category?: string;
+  };
+};
+
+export default async function BlogPage({ searchParams }: Props) {
+  const resolvedSearchParams = await searchParams;
   const categorySlug = resolvedSearchParams?.category;
   console.log("BlogPage - categorySlug:", categorySlug);
 
