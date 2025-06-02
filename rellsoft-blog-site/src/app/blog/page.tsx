@@ -1,26 +1,46 @@
-import Link from "next/link";
-import { type SanityDocument } from "next-sanity";
 import { client } from "@/app/sanity/client";
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt}`;
+import AnimatedBlog from "@/app/components/blog/animated-blog";
+
 const options = { next: { revalidate: 30 } };
-export default async function IndexPage() {
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
-  return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8">
-      <h1 className="text-4xl font-bold mb-8">Posts</h1>
-      <ul className="flex flex-col gap-y-4">
-        {posts.map((post) => (
-          <li className="hover:underline" key={post._id}>
-            <Link href={`/${post.slug.current}`}>
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <p>{new Date(post.publishedAt).toLocaleDateString()}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+const CATEGORY_ID_QUERY = `*[_type == "category" && title == $title][0]._id`;
+
+export type Post = {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  publishedAt: string;
+};
+
+export default async function BlogPage(props: {
+  searchParams?: { category?: string };
+}) {
+  const resolvedSearchParams = await props.searchParams;
+  const categorySlug = resolvedSearchParams?.category;
+  console.log("BlogPage - categorySlug:", categorySlug);
+
+  let categoryId: string | null = null;
+
+  if (categorySlug) {
+    categoryId = await client.fetch(CATEGORY_ID_QUERY, { title: categorySlug });
+    console.log("BlogPage - fetched categoryId:", categoryId);
+  }
+
+  const POSTS_QUERY = `*[
+    _type == "post"
+    && defined(slug.current)
+    ${categoryId ? "&& $category in categories[]._ref" : ""}
+  ]|order(publishedAt desc)[0...12]{
+    _id,
+    title,
+    slug,
+    publishedAt
+  }`;
+
+  const posts = await client.fetch<Post[]>(
+    POSTS_QUERY,
+    categoryId ? { category: categoryId } : {},
+    options
   );
+
+  return <AnimatedBlog posts={posts} categorySlug={categorySlug} />;
 }

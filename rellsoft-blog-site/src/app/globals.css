@@ -33,6 +33,20 @@ html,
 body,
 main {
   height: 100%;
+  overflow: hidden;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 500ms;
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
 }
 
 ::-moz-selection {
@@ -43,4 +57,17 @@ main {
 ::selection {
   color: var(--background);
   background: var(--rellsoft-green-opaque);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 500ms;
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in;
 }
