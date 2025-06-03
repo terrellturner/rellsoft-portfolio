@@ -27,12 +27,13 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
     >
       <div className=" p-2 font-mono pl-5 bg-zinc-900">blog.tsx</div>
       <div className="p-10">
-        <h1 className="text-2xl md:text-4xl font-bold mb-2">
+        <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row">
           <Typewriter
             words={[`@/brain/archive`]}
             loop={1}
             cursor={true}
-            cursorBlinking={true}
+            cursorStyle={"⚗️"}
+            cursorBlinking={false}
             cursorColor="oklch(0.8415 0.2273 150.21)"
           />
         </h1>
