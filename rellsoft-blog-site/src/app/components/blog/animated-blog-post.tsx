@@ -14,12 +14,7 @@ interface Post {
   imageUrl: string;
 }
 
-interface AnimatedBlogPostProps {
-  post: Post;
-  postImageUrl?: string | null;
-}
-
-const AnimatedBlogPost = ({ post, postImageUrl }: AnimatedBlogPostProps) => {
+const AnimatedBlogPost = ({ post }: { post: Post }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -30,9 +25,9 @@ const AnimatedBlogPost = ({ post, postImageUrl }: AnimatedBlogPostProps) => {
       <Link href="/blog" className="hover:underline">
         ← Back to posts
       </Link>
-      {postImageUrl && (
+      {post?.imageUrl && (
         <img
-          src={postImageUrl}
+          src={post.imageUrl}
           alt={post?.title}
           className="aspect-video rounded-xl"
           width="550"

@@ -22,17 +22,14 @@ export default async function PostPage({
 }) {
   const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
 
-  const postImageUrl =
-    post?.image ? urlFor(post?.image)?.width(550).height(310).url() : null;
-
   const blogPost: Post = {
     _id: post._id,
     title: post.title,
     slug: post.slug,
     publishedAt: post.publishedAt,
     bodyString: post.bodyString || [],
-    imageUrl: urlFor(post.image)?.width(550)?.height(310)?.url() || "",
+    imageUrl: urlFor(post.mainImage)?.width(550)?.height(310)?.url() || "",
   };
 
-  return <AnimatedBlogPost post={blogPost} postImageUrl={postImageUrl} />;
+  return <AnimatedBlogPost post={blogPost} />;
 }
