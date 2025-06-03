@@ -20,7 +20,11 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: { category: string | undefined } }>;
 }) {
-  const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
+  const post = await client.fetch<SanityDocument>(
+    POST_QUERY,
+    await params,
+    options
+  );
 
   const blogPost: Post = {
     _id: post._id,

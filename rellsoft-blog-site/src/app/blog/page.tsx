@@ -14,9 +14,9 @@ export type Post = {
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 }) {
-  const categorySlug = await searchParams?.category;
+  const { category: categorySlug } = await searchParams;
   console.log("BlogPage - categorySlug:", categorySlug);
   let categoryId: string | null = null;
 
