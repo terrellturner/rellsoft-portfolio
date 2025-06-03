@@ -26,7 +26,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
       className="container min-h-screen max-w-xl p-8 mx-auto"
     >
       <Link href="/">← Home</Link>
-      <h1 className="text-4xl font-bold mb-8">
+      <h1 className="text-4xl font-bold mb-2">
         <Typewriter
           words={[`@/brain/archive`]}
           loop={1}
@@ -34,8 +34,17 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
           cursorBlinking={true}
           cursorColor="oklch(0.8415 0.2273 150.21)"
         />
-        {categorySlug ? `tagged with "${categorySlug}"` : ""}
       </h1>
+      <h2 className="mb-8">
+        {categorySlug ?
+          <span>
+            Posts tagged with{" "}
+            <span className="font-bold text-rellsoft-green text-xl">
+              {categorySlug}
+            </span>
+          </span>
+        : ""}
+      </h2>
       <ul className="flex flex-col gap-y-4">
         {posts.map((post) => (
           <li className="hover:underline" key={post._id}>

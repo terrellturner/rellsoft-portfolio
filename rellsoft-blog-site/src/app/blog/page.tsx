@@ -11,21 +11,18 @@ export type Post = {
   publishedAt: string;
 };
 
-export type Params = Promise<{ slug: { category: string | undefined } }>;
-
 export default async function BlogPage({
   searchParams,
 }: {
-  searchParams: Params;
+  searchParams: { category?: string };
 }) {
-  const { slug } = await searchParams;
-  const categorySlug = slug?.category;
+  const categorySlug = await searchParams?.category;
   console.log("BlogPage - categorySlug:", categorySlug);
-
   let categoryId: string | null = null;
 
   if (categorySlug) {
     categoryId = await client.fetch(CATEGORY_ID_QUERY, { title: categorySlug });
+    console.log(categoryId);
   }
 
   const POSTS_QUERY = `*[
