@@ -12,7 +12,7 @@ import { motion } from "motion/react";
 
 export default function IndexPage() {
   return (
-    <motion.div
+    <motion.main
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -97,6 +97,6 @@ export default function IndexPage() {
           />
         </svg>
       </section>
-    </motion.div>
+    </motion.main>
   );
 }
