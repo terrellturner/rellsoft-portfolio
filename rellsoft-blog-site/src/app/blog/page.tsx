@@ -11,23 +11,21 @@ export type Post = {
   publishedAt: string;
 };
 
-type Props = {
-  params: Record<string, never>;
-  searchParams: {
-    category?: string;
-  };
-};
+export type Params = Promise<{ slug: { category: string | undefined } }>;
 
-export default async function BlogPage({ searchParams }: Props) {
-  const resolvedSearchParams = await searchParams;
-  const categorySlug = resolvedSearchParams?.category;
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Params;
+}) {
+  const { slug } = await searchParams;
+  const categorySlug = slug?.category;
   console.log("BlogPage - categorySlug:", categorySlug);
 
   let categoryId: string | null = null;
 
   if (categorySlug) {
     categoryId = await client.fetch(CATEGORY_ID_QUERY, { title: categorySlug });
-    console.log("BlogPage - fetched categoryId:", categoryId);
   }
 
   const POSTS_QUERY = `*[

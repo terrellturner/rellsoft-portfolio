@@ -3,6 +3,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/app/sanity/client";
 import AnimatedBlogPost from "@/app/components/blog/animated-blog-post";
+import type { Post } from "@/app/types/Post";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -17,15 +18,21 @@ const options = { next: { revalidate: 30 } };
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: { category: string | undefined } }>;
 }) {
-  const post = await client.fetch<SanityDocument>(
-    POST_QUERY,
-    await params,
-    options
-  );
+  const post = await client.fetch<SanityDocument>(POST_QUERY, params, options);
+
   const postImageUrl =
     post?.image ? urlFor(post?.image)?.width(550).height(310).url() : null;
 
-  return <AnimatedBlogPost post={post} postImageUrl={postImageUrl} />;
+  const blogPost: Post = {
+    _id: post._id,
+    title: post.title,
+    slug: post.slug,
+    publishedAt: post.publishedAt,
+    bodyString: post.bodyString || [],
+    imageUrl: urlFor(post.image)?.width(550)?.height(310)?.url() || "",
+  };
+
+  return <AnimatedBlogPost post={blogPost} postImageUrl={postImageUrl} />;
 }
