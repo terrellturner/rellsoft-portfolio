@@ -2,17 +2,60 @@
 
 import React from "react";
 import Link from "next/link";
-import { PortableText } from "next-sanity";
+import { client } from "@/app/sanity/client";
+import { PortableText, PortableTextTypeComponentProps } from "next-sanity";
 import { motion } from "motion/react";
+import type { TypedObject } from "@portabletext/types";
+import { getImageDimensions } from "@sanity/asset-utils";
+import urlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/asset-utils";
 
 interface Post {
   _id: string;
   title: string;
   slug: { current: string };
   publishedAt: string;
-  bodyString: string;
   imageUrl: string;
+  body: TypedObject[];
+  categories: { title: string }[];
 }
+
+type ImageValue = SanityImageSource & {
+  alt?: string;
+};
+
+const imageUrlBuilder = urlBuilder(client);
+
+const ImageComponent = ({
+  value,
+  isInline,
+}: PortableTextTypeComponentProps<ImageValue>) => {
+  const { width, height } = getImageDimensions(value);
+  return (
+    <img
+      src={imageUrlBuilder
+        .image(value)
+        .width(isInline ? 100 : 800)
+        .fit("max")
+        .auto("format")
+        .url()}
+      alt={value.alt || " "}
+      loading="lazy"
+      style={{
+        display: isInline ? "inline-block" : "block",
+        aspectRatio: width / height,
+        maxWidth: "100%",
+        height: "auto",
+      }}
+    />
+  );
+};
+
+const components = {
+  types: {
+    image: ImageComponent,
+  },
+};
 
 const AnimatedBlogPost = ({ post }: { post: Post }) => {
   return (
@@ -20,12 +63,12 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="container my-10 grow max-w-xs md:max-w-3xl mx-auto bg-stone-950 rounded-2xl border-zinc-600 border"
+      className="container grow w-11/12 md:max-w-3xl mx-auto bg-stone-950 rounded-2xl border-zinc-600 border"
     >
-      <div className=" p-2 font-mono pl-5 bg-zinc-900">
+      <div className=" p-2 font-mono pl-5 bg-zinc-900 truncate rounded-t-2xl">
         {post?.slug?.current}.tsx
       </div>
-      <div className="p-10">
+      <div className="p-5 md:p-10 flex flex-col space-y-5 py-10">
         <Link href="/blog" className="hover:underline">
           ← Back to posts
         </Link>
@@ -38,11 +81,11 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
             height="310"
           />
         )}
-        <h1 className="text-4xl font-bold mb-8">{post?.title}</h1>
-        <div className="prose">
+        <h1 className="text-xl md:text-4xl font-bold mb-8">{post?.title}</h1>
+        <div className="prose text-zinc-200 break-words mx-auto w-full">
           <p>Published: {new Date(post?.publishedAt).toLocaleDateString()}</p>
-          {Array.isArray(post?.bodyString) && (
-            <PortableText value={post?.bodyString} />
+          {Array.isArray(post?.body) && (
+            <PortableText value={post?.body} components={components} />
           )}
         </div>
       </div>

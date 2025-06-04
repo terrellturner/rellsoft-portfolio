@@ -16,12 +16,12 @@ export default function IndexPage() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="container mx-auto min-h-screen flex flex-col justify-center"
+      className="container mx-auto grow flex flex-col justify-center"
     >
       <section
         aria-label="Home"
         id="hero"
-        className="text-center items-center lg:pt-0 lg:text-left relative place-items-center justify-center space-y-6 flex content-between w-full flex-col lg:flex-row mx-auto md:max-w-screen-3xl p-5 md:justify-around"
+        className="z-30 text-center items-center lg:pt-0 lg:text-left relative place-items-center justify-center space-y-6 flex content-between w-full flex-col lg:flex-row mx-auto md:max-w-screen-3xl p-5 md:justify-around"
       >
         <div className="lg:p-5 flex flex-col justify-center">
           <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-green ">

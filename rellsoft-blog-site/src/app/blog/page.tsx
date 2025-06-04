@@ -1,5 +1,6 @@
 import { client } from "@/app/sanity/client";
 import AnimatedBlog from "@/app/components/blog/animated-blog";
+import { Metadata } from "next";
 
 const options = { next: { revalidate: 30 } };
 const CATEGORY_ID_QUERY = `*[_type == "category" && title == $title][0]._id`;
@@ -9,6 +10,12 @@ export type Post = {
   title: string;
   slug: { current: string };
   publishedAt: string;
+  categories: { title: string }[];
+};
+
+export const metadata: Metadata = {
+  title: "Terrell Turner's Blog",
+  description: "Miscellaneous ramblings with useful information sprinkled in.",
 };
 
 export default async function BlogPage({
@@ -17,14 +24,11 @@ export default async function BlogPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category: categorySlug } = await searchParams;
-  console.log("BlogPage - categorySlug:", categorySlug);
   let categoryId: string | null = null;
 
   if (categorySlug) {
     categoryId = await client.fetch(CATEGORY_ID_QUERY, { title: categorySlug });
-    console.log(categoryId);
   }
-
   const POSTS_QUERY = `*[
     _type == "post"
     && defined(slug.current)
@@ -33,7 +37,10 @@ export default async function BlogPage({
     _id,
     title,
     slug,
-    publishedAt
+    publishedAt,
+    categories[]->{
+    title
+  }
   }`;
 
   const posts = await client.fetch<Post[]>(
