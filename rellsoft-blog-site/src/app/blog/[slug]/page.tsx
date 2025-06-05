@@ -16,30 +16,42 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 30 } };
 
-export const metadata: Metadata = {
-  title: "Blog!",
-  description: "Made with <3 using Sanity+NextJS+TS!",
-};
+async function getPost(slug: string): Promise<SanityDocument | null> {
+  return await client.fetch(POST_QUERY, { slug }, options);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPost(params.slug);
+
+  return {
+    title: post?.title || "404!",
+    description: post?.description || "RellSoft",
+  };
+}
 
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: { category: string | undefined } }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(
-    POST_QUERY,
-    await params,
-    options
-  );
+  const { slug } = await params;
+
+  const post = await getPost(slug);
+
+  if (!post) return <div>404 - Post not found</div>;
 
   const blogPost: Post = {
-    _id: post._id,
-    title: post.title,
-    slug: post.slug,
-    publishedAt: post.publishedAt,
-    body: post.body || [],
-    imageUrl: urlFor(post.mainImage)?.width(550)?.height(310)?.url() || "",
-    categories: post.categories,
+    _id: post?._id || "",
+    title: post?.title,
+    slug: post?.slug,
+    publishedAt: post?.publishedAt,
+    body: post?.body || [],
+    imageUrl: urlFor(post?.mainImage)?.width(550)?.height(310)?.url() || "",
+    categories: post?.categories,
   };
 
   console.log(blogPost);

@@ -1,11 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "Projects", href: "/projects" },
+  { name: "Resume", href: "/resume" },
+];
 
 const Header = () => {
   const [mobileNavToggle, setMobileNavToggle] = useState(false);
+  const [queryString, setQueryString] = useState("");
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (searchParams) {
+      setQueryString(searchParams.toString());
+      console.log(queryString);
+    }
+  }, [searchParams]);
 
   const mobileNavMotionVariants = {
     open: { x: 0, opacity: 1, transition: { duration: 0.5 } },
@@ -19,13 +38,39 @@ const Header = () => {
 
   return (
     <header className="p-2 bg-stone-900 w-full flex flex-row justify-between h-20 mb-15 items-center px-5">
-      <Link className="h-full" href="/">
-        <img
-          className="h-full p-2"
-          alt="The RellSoft logo"
-          src={"/images/logo-svg.svg"}
-        ></img>
-      </Link>
+      <nav className="h-full flex flex-row justify-between w-full">
+        <Link className="h-full" href="/">
+          <img
+            className="h-full p-2"
+            alt="The RellSoft logo"
+            src={"/images/logo-svg.svg"}
+          ></img>
+        </Link>
+        <ul className="hidden md:flex flex-row items-center space-x-4 tracking-tight text-2xl uppercase text-rellsoft-green font-bold">
+          <li
+            className={`text-rellsoft-green transition-colors duration-250 hover:text-zinc-200 ${pathname === "/" ? `text-zinc-200` : " "}`}
+          >
+            <Link href="/">Home</Link>
+          </li>
+          <li
+            className={`text-rellsoft-green transition-colors duration-250 hover:text-zinc-200 ${pathname + queryString === "/blog" ? `text-zinc-200` : " "}`}
+          >
+            <Link href="/blog">Blog</Link>
+          </li>
+          <li
+            className={`text-rellsoft-green transition-colors duration-250 hover:text-zinc-200 ${pathname + "?" + queryString === "/blog?category=projects" ? `text-zinc-200` : " "}`}
+          >
+            <Link href="/blog?category='projects'">Projects</Link>
+          </li>
+          <li
+            className={`text-rellsoft-green transition-colors duration-250 hover:text-zinc-200`}
+          >
+            <Link href="/">Resume</Link>
+          </li>
+        </ul>
+      </nav>
+
+      {/* Mobile Nav Button */}
       <div
         className="flex flex-col md:hidden aspect-square h-12 space-y-2.5 justify-center z-60"
         onClick={() => setMobileNavToggle(!mobileNavToggle)}
@@ -40,6 +85,8 @@ const Header = () => {
           className={`w-full h-1 origin-center bg-rellsoft-green transition-transform duration-300 ${mobileNavToggle ? `-translate-y-[0.40rem] -rotate-45` : ``}`}
         ></span>
       </div>
+      {/* Desktop Nav */}
+
       {/* Mobile Nav */}
       <motion.nav
         variants={mobileNavMotionVariants}
