@@ -2,6 +2,7 @@ import Footer from "./components/footer";
 import Header from "@/app/components/header";
 import "./globals.css";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Terrell Turner's Portfolio",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className="flex flex-col items-center ">
         <Header />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>
