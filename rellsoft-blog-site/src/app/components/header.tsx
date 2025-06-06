@@ -1,23 +1,56 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { Suspense, useState } from "react";
 import { motion } from "motion/react";
-import { usePathname } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import RellSoftLogo from "./rellsoft-logo";
 
 const Header = () => {
   const [mobileNavToggle, setMobileNavToggle] = useState(false);
-  const [queryString, setQueryString] = useState("");
-  const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (searchParams) {
-      setQueryString(searchParams.toString());
-    }
-  }, [searchParams, queryString]);
+  function NavLinks() {
+    const searchParams = useSearchParams();
+    console.log(pathname, searchParams.get("category"));
+
+    return (
+      <ul className="hidden md:flex transition-colors flex-row items-center space-x-4 tracking-tight text-2xl uppercase font-bold">
+        <li
+          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+            pathname === "/" ?
+              `text-rellsoft-orange dark:text-rellsoft-green`
+            : " "
+          }`}
+        >
+          <Link href="/">Home</Link>
+        </li>
+        <li
+          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+            pathname.includes("/blog") && !searchParams.get("category") ?
+              `text-rellsoft-orange dark:text-rellsoft-green`
+            : " "
+          }`}
+        >
+          <Link href="/blog">Blog</Link>
+        </li>
+        <li
+          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+            searchParams.get("category") === "projects" ?
+              `text-rellsoft-orange dark:text-rellsoft-green`
+            : " "
+          }`}
+        >
+          <Link href="/blog?category=projects">Projects</Link>
+        </li>
+        <li
+          className={`text-stone-800 dark:text-rellsoft-green transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green`}
+        >
+          <Link href="/">Resume</Link>
+        </li>
+      </ul>
+    );
+  }
 
   const mobileNavMotionVariants = {
     open: { x: 0, opacity: 1, transition: { duration: 0.5 } },
@@ -30,45 +63,18 @@ const Header = () => {
   };
 
   return (
-    <header className="p-2 border-b border-b-zinc-800 bg-zinc-200 dark:bg-stone-900 w-full flex flex-row justify-between h-20 mb-15 items-center px-5">
+    <header className="p-5 border-b border-b-zinc-800 bg-zinc-200 dark:bg-stone-900 w-full flex flex-row justify-between mb-15 items-center px-5">
       <nav className="h-full flex flex-row justify-between w-full">
         <Link className="h-full" href="/">
           <RellSoftLogo
-            classNames="h-full stroke-30 stroke-rellsoft-green-muted dark:stroke-rellsoft-green"
-            initialAnimation={1}
             animationLength={1}
+            initialAnimation={1}
+            classNames="h-full stroke-30 stroke-rellsoft-orange dark:stroke-rellsoft-green"
           />
         </Link>
-        <ul className="hidden md:flex flex-row items-center space-x-4 tracking-tight text-2xl uppercase text-rellsoft-green font-bold">
-          <li
-            className={`text-rellsoft-green-muted dark:text-rellsoft-green transition-colors duration-250 hover:text-zinc-100 ${
-              pathname === "/" ? `text-zinc-100` : " "
-            }`}
-          >
-            <Link href="/">Home</Link>
-          </li>
-          <li
-            className={`text-rellsoft-green-muted dark:text-rellsoft-green transition-colors duration-250 hover:text-zinc-100 ${
-              pathname + queryString === "/blog" ? `text-zinc-100` : " "
-            }`}
-          >
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li
-            className={`text-rellsoft-green-muted dark:text-rellsoft-green transition-colors duration-250 hover:text-zinc-100 ${
-              pathname + "?" + queryString === "/blog?category=projects" ?
-                `text-zinc-100`
-              : " "
-            }`}
-          >
-            <Link href="/blog?category=projects">Projects</Link>
-          </li>
-          <li
-            className={`text-rellsoft-green-muted dark:text-rellsoft-green transition-colors duration-250 hover:text-zinc-100`}
-          >
-            <Link href="/">Resume</Link>
-          </li>
-        </ul>
+        <Suspense>
+          <NavLinks />
+        </Suspense>
       </nav>
 
       {/* Mobile Nav Button */}
@@ -77,17 +83,17 @@ const Header = () => {
         onClick={() => setMobileNavToggle(!mobileNavToggle)}
       >
         <span
-          className={`w-full h-1 origin-center bg-rellsoft-green-muted dark:bg-rellsoft-green duration-300 ${
+          className={`w-full h-1 origin-center bg-rellsoft-orange dark:bg-rellsoft-green duration-300 ${
             mobileNavToggle ? `left-0 rotate-45 absolute m-0` : ``
           }`}
         ></span>
         <span
-          className={`w-full h-1 bg-rellsoft-green-muted dark:bg-rellsoft-green duration-300 ${
+          className={`w-full h-1 bg-rellsoft-orange dark:bg-rellsoft-green duration-300 ${
             mobileNavToggle ? `my-0 hidden` : ``
           }`}
         ></span>
         <span
-          className={`w-full h-1 origin-center bg-rellsoft-green-muted dark:bg-rellsoft-green duration-300 ${
+          className={`w-full h-1 origin-center bg-rellsoft-orange dark:bg-rellsoft-green duration-300 ${
             mobileNavToggle ? `left-0 -rotate-45 absolute m-0` : ``
           }`}
         ></span>
@@ -101,7 +107,7 @@ const Header = () => {
         animate={mobileNavToggle ? "open" : "closed"}
         className="flex flex-col fixed h-full w-screen bg-stone-200 dark:bg-stone-950 left-32 right-0 top-0 z-50"
       >
-        <ul className="flex flex-col text-rellsoft-green-muted dark:text-rellsoft-green font-extrabold mt-40 space-y-3 p-4 text-4xl uppercase tracking-tight">
+        <ul className="flex flex-col text-rellsoft-orange dark:text-rellsoft-green font-extrabold mt-40 space-y-3 p-4 text-4xl uppercase tracking-tight">
           <li>
             <Link href={"/blog"}>Home</Link>
           </li>

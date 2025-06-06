@@ -12,7 +12,6 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return (
     <html lang="en">
