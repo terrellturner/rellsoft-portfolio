@@ -19,20 +19,18 @@ interface AnimatedBlogProps {
 }
 
 const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
-  console.log(posts);
-
   return (
     <motion.main
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="container grow w-11/12 pb-12  md:w-3/5 bg-stone-950 rounded-2xl border-zinc-600 border"
+      className="container grow w-11/12 pb-12  lg:w-2/3 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border"
     >
-      <div className=" p-2 font-mono pl-5 bg-zinc-900 rounded-t-2xl">
+      <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-400 rounded-t-2xl">
         blog.tsx
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row">
+        <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row dark:text-rellsoft-green text-rellsoft-green-muted">
           <Typewriter
             words={[`@/brain/archive`]}
             loop={1}
@@ -46,7 +44,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
           {categorySlug ?
             <span>
               Posts tagged with{" "}
-              <span className="font-bold text-rellsoft-green text-xl">
+              <span className="font-bold text-stone-800 dark:text-rellsoft-green text-xl">
                 {categorySlug}
               </span>
             </span>
@@ -55,11 +53,11 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
         <ul className="flex flex-col gap-y-4">
           {posts.map((post) => (
             <li
-              className="p-3 md:pl-5 group flex flex-row md:justify-between items-center border border-rellsoft-green rounded-2xl"
+              className="p-3 md:pl-5 group flex flex-row md:justify-between items-center border border-stone-500 dark:border-rellsoft-green rounded-2xl"
               key={post._id}
             >
               <Link className="w-full " href={`/blog/${post.slug.current}`}>
-                <h2 className="text-lg truncate grow md:w-sm font-semibold text-rellsoft-green group-hover:underline md:text-2xl">
+                <h2 className="text-lg truncate grow md:w-sm font-semibold text-rellsoft-green-muted dark:text-rellsoft-green group-hover:underline md:text-2xl">
                   {post.title}
                 </h2>
                 <p className="group">
@@ -69,7 +67,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
               <div className="w-1/3 md:flex flex-row flex-wrap justify-center text-center hidden">
                 {post.categories?.map((category) => (
                   <span
-                    className="text-rellsoft-green p-1 text-sm border border-rellsoft-green rounded-full m-1 px-2"
+                    className="text-stone-950 transition-colors duration-300 ease-in-out hover:text-rellsoft-green-muted dark:hover:text-zinc-300 dark:text-rellsoft-green p-1 text-sm border border-stone-500 dark:border-rellsoft-green rounded-full m-1 px-2"
                     key={category.title}
                   >
                     -

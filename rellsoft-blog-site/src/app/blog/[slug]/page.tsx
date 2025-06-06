@@ -25,7 +25,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   return {
     title: post?.title || "404!",
@@ -36,7 +37,7 @@ export async function generateMetadata({
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
   const { slug } = await params;
 
@@ -53,8 +54,5 @@ export default async function PostPage({
     imageUrl: urlFor(post?.mainImage)?.width(550)?.height(310)?.url() || "",
     categories: post?.categories,
   };
-
-  console.log(blogPost);
-
   return <AnimatedBlogPost post={blogPost} />;
 }
