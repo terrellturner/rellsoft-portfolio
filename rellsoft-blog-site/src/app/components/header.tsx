@@ -193,6 +193,7 @@ const Header = () => {
         </Suspense>
       </motion.nav>
       <motion.div
+        onClick={() => setMobileNavToggle(false)}
         variants={mobileNavOpacityVariant}
         animate={mobileNavToggle ? "open" : "closed"}
         initial="closed"
