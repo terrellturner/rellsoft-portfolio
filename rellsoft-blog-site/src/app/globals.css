@@ -53,18 +53,6 @@ body {
   box-sizing: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::-moz-selection {
-    color: var(--background);
-    background: var(--rellsoft-green-opaque);
-  }
-
-  ::selection {
-    color: var(--background);
-    background: var(--rellsoft-green-opaque);
-  }
-}
-
 ::-moz-selection {
   color: var(--background);
   background: var(--color-rellsoft-orange-opaque);
@@ -73,6 +61,18 @@ body {
 ::selection {
   color: var(--background);
   background: var(--color-rellsoft-orange-opaque);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-moz-selection {
+    color: var(--background);
+    background: var(--color-rellsoft-green-opaque);
+  }
+
+  ::selection {
+    color: var(--background);
+    background: var(--color-rellsoft-green-opaque);
+  }
 }
 
 ::view-transition-old(root),
