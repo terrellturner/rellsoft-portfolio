@@ -47,7 +47,7 @@ const Header = () => {
         <li
           className={`text-stone-800 dark:text-rellsoft-green transition-colors duration-250 hover:text-rellsoft-orange hover:dark:text-zinc-100`}
         >
-          <Link href="./resume.pdf" target="_blank" rel="noreferrer noopener">
+          <Link href="/resume.pdf" target="_blank" rel="noreferrer noopener">
             Resume
           </Link>
         </li>
@@ -120,7 +120,7 @@ const Header = () => {
         <li>
           <Link
             className={`${`text-stone-700 dark:text-rellsoft-green`}`}
-            href="./resume.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noreferrer noopener"
           >
