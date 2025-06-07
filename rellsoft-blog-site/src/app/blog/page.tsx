@@ -1,6 +1,5 @@
 import { client } from "@/app/sanity/client";
 import AnimatedBlog from "@/app/components/blog/animated-blog";
-import { Metadata } from "next";
 
 const options = { next: { revalidate: 30 } };
 const CATEGORY_ID_QUERY = `*[_type == "category" && title == $title][0]._id`;
@@ -11,11 +10,6 @@ export type Post = {
   slug: { current: string };
   publishedAt: string;
   categories: { title: string }[];
-};
-
-export const metadata: Metadata = {
-  title: "Terrell Turner's Blog",
-  description: "Miscellaneous ramblings with useful information sprinkled in.",
 };
 
 export default async function BlogPage({
