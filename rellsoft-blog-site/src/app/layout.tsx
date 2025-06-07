@@ -5,8 +5,30 @@ import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Terrell Turner's Portfolio",
-  description: "Made with <3 using Sanity+NextJS+TS!",
+  title: "Terrell Turner",
+  description: "Junior full-stack web developer, game developer, 3D artist.",
+  openGraph: {
+    title: "Terrell Turner – Junior Full-Stack Dev",
+    description: "Practical ideas, clean UI, and always looking to learn.",
+    url: "https://rellsoft.dev",
+    siteName: "Terrell Turner",
+    images: [
+      {
+        url: "./images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Terrell Turner - Portfolio + Blog",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terrell Turner – Junior Full-Stack Dev",
+    description: "Practical ideas, clean UI, and always looking to learn.",
+    images: ["./images/og-image.jpg"],
+  },
   icons: {
     icon: [
       {
@@ -22,6 +44,7 @@ export const metadata: Metadata = {
         url: "/images/favicon-dark.ico",
       },
     ],
+    shortcut: "/images/favicon-dark.ico",
   },
 };
 
