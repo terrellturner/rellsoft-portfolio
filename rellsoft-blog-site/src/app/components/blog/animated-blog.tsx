@@ -24,7 +24,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="grow w-full flex flex-col justify-center items-center"
+      className="grow w-full flex flex-col justify-center items-center my-10 py-5"
     >
       <div className="max-w-4xl md:w-full w-11/12 container grow pb-12 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
         <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-300 rounded-t-2xl">

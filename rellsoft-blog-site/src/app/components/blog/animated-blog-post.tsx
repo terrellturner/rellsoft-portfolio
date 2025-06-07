@@ -63,7 +63,7 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="grow flex flex-col w-full"
+      className="grow flex flex-col w-full my-10 py-5"
     >
       <div className="container grow w-11/12 md:max-w-3xl mx-auto bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
         <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 truncate rounded-t-2xl bg-zinc-300">

@@ -17,14 +17,14 @@ export default function IndexPage() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="container mx-auto grow flex flex-col justify-center transition-all "
+      className="mx-auto grow flex flex-col justify-center transition-all w-full pb-10 md:mb-0 md:py-10"
     >
       <section
         aria-label="Home"
         id="hero"
-        className="z-30 flex-col-reverse text-center items-center lg:text-left relative place-items-center justify-center space-y-6 flex content-between w-full lg:flex-row mx-auto px-5 lg:justify-around text-stone-800 dark:text-zinc-100 "
+        className="z-30 flex-col-reverse text-center lg:text-left container relative place-items-center justify-center space-y-6 flex w-full lg:flex-row mx-auto md:max-w-screen-3xl px-5 lg:justify-around text-stone-800 dark:text-zinc-100"
       >
-        <div className="lg:p-5 flex flex-col justify-center md:max-w-screen-3xl ">
+        <div className="lg:p-5 flex flex-col justify-center">
           <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
             Hello!
           </h1>
@@ -96,7 +96,7 @@ export default function IndexPage() {
         <RellSoftLogo
           animationLength={1}
           initialAnimation={0}
-          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-1/3 lg:h-2/3 p-5 md:p-0"
+          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green md:w-1/3 w-2/3 py-10 md:py-0"
         />
       </section>
     </motion.main>
