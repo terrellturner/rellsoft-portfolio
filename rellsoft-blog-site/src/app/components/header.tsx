@@ -148,7 +148,9 @@ const Header = () => {
           <RellSoftLogo
             animationLength={1}
             initialAnimation={1}
-            classNames="w-2/3 h-full stroke-30 stroke-rellsoft-orange dark:stroke-rellsoft-green hidden md:flex"
+            classNames={`w-2/3 h-full stroke-30 stroke-rellsoft-orange dark:stroke-rellsoft-green md:flex ${
+              pathname === "/" ? `my-0 hidden` : `flex`
+            }`}
           />
         </Link>
         <Suspense>

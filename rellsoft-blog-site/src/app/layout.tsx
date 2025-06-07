@@ -55,7 +55,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center ">
+      <body className="flex flex-col items-center place-items-center justify-around ">
         <Header />
         {children}
         <Analytics />
