@@ -142,7 +142,7 @@ const Header = () => {
   };
 
   return (
-    <header className="md:p-2 md:border-b border-b-zinc-800 bg-none border-none md:bg-zinc-200 w-full flex flex-row justify-between items-center px-5">
+    <header className="md:p-2 mb-15 md:border-b border-b-zinc-800 bg-none border-none md:bg-zinc-200 w-full flex flex-row justify-between items-center px-5">
       <nav className="h-full flex flex-row justify-between w-full">
         <Link className="h-18 flex justify-center" href="/">
           <RellSoftLogo

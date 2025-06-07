@@ -17,7 +17,7 @@ export default function IndexPage() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="container mx-auto grow flex flex-col justify-center transition-all "
+      className="container mx-auto grow flex flex-col justify-center transition-all -mt-15"
     >
       <section
         aria-label="Home"
