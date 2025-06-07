@@ -96,7 +96,7 @@ export default function IndexPage() {
         <RellSoftLogo
           animationLength={1}
           initialAnimation={0}
-          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-1/3 lg:h-2/3"
+          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-1/3 lg:h-2/3 p-5 md:p-0"
         />
       </section>
     </motion.main>
