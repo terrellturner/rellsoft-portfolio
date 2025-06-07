@@ -22,13 +22,13 @@ export default function IndexPage() {
       <section
         aria-label="Home"
         id="hero"
-        className="z-30 text-center items-center lg:pt-0 lg:text-left relative place-items-center justify-center space-y-6 flex content-between w-full flex-col lg:flex-row mx-auto md:max-w-screen-3xl p-5 md:justify-around"
+        className="z-30 flex-col-reverse text-center items-center lg:text-left relative place-items-center justify-center space-y-6 flex content-between w-full lg:flex-row mx-auto md:max-w-screen-3xl px-5 lg:justify-around text-stone-800 dark:text-zinc-100"
       >
         <div className="lg:p-5 flex flex-col justify-center">
           <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
             Hello!
           </h1>
-          <div className="flex flex-col space-y-8 justify-center p-2  lg:max-w-lg ">
+          <div className="flex flex-col space-y-8 justify-center p-2 lg:max-w-lg ">
             <h2 className="text-2xl font-bold md:text-5xl">
               My name is Terrell.
             </h2>
@@ -59,25 +59,35 @@ export default function IndexPage() {
               </span>
               .
             </h4>
-            <div className="w-full flex flex-row leading-0 flex-wrap md:flex-nowrap justify-center lg:justify-around lg:max-w-lg">
-              <button className="group text-zinc-100 dark:text-zinc-900 bg-rellsoft-orange dark:bg-rellsoft-green motion-reduce:hover:shadow-none motion-reduce:shadow-none dark:motion-safe:shadow-[0_0_10px_#39a85c] dark:motion-safe:hover:shadow-[0_0_20px_#39a85c]  flex flex-row m-1.5 lg:m-1 lg:ml-0 ml-0 justify-center items-center space-x-1 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-filter ease-in-out duration-200 hover:bg-zinc-300 hover:text-zinc-950">
+            <div className=" w-full flex flex-row leading-0 flex-wrap md:flex-nowrap justify-center lg:justify-around lg:max-w-lg">
+              <Link
+                href={"mailto:terrell@rellsoft.dev"}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group text-zinc-100 dark:text-stone-800 bg-rellsoft-orange dark:bg-rellsoft-green motion-reduce:hover:shadow-none motion-reduce:shadow-none dark:motion-safe:shadow-[0_0_10px_#39a85c] dark:motion-safe:hover:shadow-[0_0_20px_#39a85c] hover:border hover:border-stone-800 dark:hover:border-rellsoft-green hover:shadow-[5px_5px_0_#ff7f50] flex flex-row m-1.5 lg:m-1 lg:ml-0 ml-0 justify-center items-center space-x-1 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-filter ease-in-out duration-200 hover:bg-zinc-100 hover:text-zinc-950"
+              >
                 <span className="group">Let&apos;s Talk</span>
                 <PiVideoCamera className="text-lg group-hover:zinc-950" />
-              </button>
-              <button className="bg-zinc-300 dark:bg-zinc-900 group text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-zinc-800 dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-300 hover:text-zinc-950">
+              </Link>
+              <Link
+                href={"https://github.com/terrellturner"}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="bg-zinc-100 dark:bg-zinc-900 group text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-rellsoft-orange dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-200 hover:text-zinc-950"
+              >
                 <span className="group">Github</span>
-                <PiGithubLogo className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-zinc-950" />
-              </button>
+                <PiGithubLogo className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-rellsoft-orange dark:group-hover:text-zinc-950" />
+              </Link>
               <Link href="/blog">
-                <button className="group bg-zinc-300 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-zinc-800 dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-300 hover:text-zinc-950">
+                <button className="group bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-rellsoft-orange dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-200 hover:text-zinc-950">
                   <span className="group">Blog</span>
-                  <PiScroll className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-zinc-950" />
+                  <PiScroll className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-rellsoft-orange dark:group-hover:text-zinc-950" />
                 </button>
               </Link>
               <Link href="/blog?category=projects">
-                <button className="group bg-zinc-300 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-zinc-800 dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-300 hover:text-zinc-950">
+                <button className="group bg-zinc-100 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-200 border flex flex-row m-1.5 lg:m-1 justify-center items-center space-x-1 border-rellsoft-orange dark:border-zinc-500 rounded-lg p-5 w-min whitespace-nowrap cursor-pointer transition-colors hover:bg-zinc-200 hover:text-zinc-950">
                   <span className="group">Projects</span>
-                  <PiShootingStar className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-zinc-950" />
+                  <PiShootingStar className="text-lg text-stone-900 dark:text-rellsoft-green group-hover:-translate-y-1 transition-transform group-hover:translate-x-.5 group-hover:text-rellsoft-orange dark:group-hover:text-zinc-950" />
                 </button>
               </Link>
             </div>
@@ -86,7 +96,7 @@ export default function IndexPage() {
         <RellSoftLogo
           animationLength={1}
           initialAnimation={0}
-          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-1/3 lg:h-[30rem]"
+          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-1/3 lg:h-2/3"
         />
       </section>
     </motion.main>

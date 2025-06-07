@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -8,6 +9,9 @@
   --rellsoft-green-opaque: oklch(0.8415 0.2273 150.21 / 90%);
   --rellsoft-green-muted: oklch(0.4375 0.0408 159.8);
   --rellsoft-orange: oklch(0.735 0.168 40.247);
+  --rellsoft-orange-opaque: oklch(0.735 0.168 40.247 / 90%);
+  --font-geist-sans: "Lato", sans-serif;
+  --font-geist-mono: "Courier Prime", monospace monospace;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e4e4e7' fill-opacity='0.5'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -18,6 +22,7 @@
   --color-rellsoft-green-opaque: var(--rellsoft-green-opaque);
   --color-rellsoft-green: var(--rellsoft-green);
   --color-rellsoft-orange: var(--rellsoft-orange);
+  --color-rellsoft-orange-opaque: var(--rellsoft-orange-opaque);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -48,14 +53,26 @@ body {
   box-sizing: inherit;
 }
 
+@media (prefers-color-scheme: dark) {
+  ::-moz-selection {
+    color: var(--background);
+    background: var(--rellsoft-green-opaque);
+  }
+
+  ::selection {
+    color: var(--background);
+    background: var(--rellsoft-green-opaque);
+  }
+}
+
 ::-moz-selection {
   color: var(--background);
-  background: var(--rellsoft-green-opaque);
+  background: var(--color-rellsoft-orange-opaque);
 }
 
 ::selection {
   color: var(--background);
-  background: var(--rellsoft-green-opaque);
+  background: var(--color-rellsoft-orange-opaque);
 }
 
 ::view-transition-old(root),

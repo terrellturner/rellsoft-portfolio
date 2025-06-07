@@ -26,11 +26,11 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="container grow w-11/12 pb-12  lg:w-2/3 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border"
     >
-      <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-400 rounded-t-2xl">
+      <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-300 rounded-t-2xl">
         blog.tsx
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row dark:text-rellsoft-green text-">
+        <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row dark:text-rellsoft-green text-stone-700">
           <Typewriter
             words={[`@/brain/archive`]}
             loop={1}

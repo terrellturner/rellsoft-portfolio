@@ -10,43 +10,122 @@ const Header = () => {
   const [mobileNavToggle, setMobileNavToggle] = useState(false);
   const pathname = usePathname();
 
-  function NavLinks() {
+  //https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+
+  function DesktopNavLinks() {
     const searchParams = useSearchParams();
-    console.log(pathname, searchParams.get("category"));
 
     return (
       <ul className="hidden md:flex transition-colors flex-row items-center space-x-4 tracking-tight text-2xl uppercase font-bold">
         <li
-          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+          className={`transition-colors duration-250 hover:text-rellsoft-orange hover:dark:text-zinc-100 ${
             pathname === "/" ?
-              `text-rellsoft-orange dark:text-rellsoft-green`
-            : " "
+              `text-rellsoft-orange dark:text-zinc-100`
+            : "text-stone-700 dark:text-rellsoft-green"
           }`}
         >
           <Link href="/">Home</Link>
         </li>
         <li
-          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+          className={`transition-colors duration-250 hover:text-rellsoft-orange hover:dark:text-zinc-100 ${
             pathname.includes("/blog") && !searchParams.get("category") ?
-              `text-rellsoft-orange dark:text-rellsoft-green`
-            : " "
+              `text-rellsoft-orange dark:text-zinc-100`
+            : "text-stone-700 dark:text-rellsoft-green"
           }`}
         >
           <Link href="/blog">Blog</Link>
         </li>
         <li
-          className={`transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green ${
+          className={`transition-colors duration-250 hover:text-rellsoft-orange hover:dark:text-zinc-100 ${
             searchParams.get("category") === "projects" ?
-              `text-rellsoft-orange dark:text-rellsoft-green`
-            : " "
+              `text-rellsoft-orange dark:text-zinc-100`
+            : "text-stone-700 dark:text-rellsoft-green"
           }`}
         >
           <Link href="/blog?category=projects">Projects</Link>
         </li>
         <li
-          className={`text-stone-800 dark:text-rellsoft-green transition-colors duration-250 hover:text-rellsoft-orange dark:hover:text-rellsoft-green`}
+          className={`text-stone-800 dark:text-rellsoft-green transition-colors duration-250 hover:text-rellsoft-orange hover:dark:text-zinc-100`}
         >
-          <Link href="/">Resume</Link>
+          <Link href="./resume.pdf" target="_blank" rel="noreferrer noopener">
+            Resume
+          </Link>
+        </li>
+      </ul>
+    );
+  }
+
+  function MobileNavLinks() {
+    const searchParams = useSearchParams();
+    return (
+      <ul className="flex flex-col text-stone-800 dark:text-rellsoft-green font-extrabold mt-40 space-y-3 p-4 text-4xl uppercase tracking-tight">
+        <li>
+          <Link
+            onClick={() => {
+              setMobileNavToggle(false);
+            }}
+            className={`${
+              pathname === "/" ?
+                `text-rellsoft-orange dark:text-zinc-100`
+              : "text-stone-700 dark:text-rellsoft-green"
+            }`}
+            href={"/"}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => {
+              setMobileNavToggle(false);
+            }}
+            className={`${
+              pathname.includes("/blog") && !searchParams.get("category") ?
+                `text-rellsoft-orange dark:text-zinc-100`
+              : "text-stone-700 dark:text-rellsoft-green"
+            }`}
+            href={"/blog"}
+          >
+            Blog
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => {
+              setMobileNavToggle(false);
+            }}
+            className={`${
+              searchParams.get("category") === "projects" ?
+                `text-rellsoft-orange dark:text-zinc-100`
+              : "text-stone-700 dark:text-rellsoft-green"
+            }`}
+            href={"/blog?category=projects"}
+          >
+            Projects
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => {
+              setMobileNavToggle(false);
+            }}
+            className={`${`text-stone-700 dark:text-rellsoft-green`}`}
+            href={"mailto:terrell@rellsoft.dev"}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Contact
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={`${`text-stone-700 dark:text-rellsoft-green`}`}
+            href="./resume.pdf"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Resume
+          </Link>
         </li>
       </ul>
     );
@@ -63,17 +142,17 @@ const Header = () => {
   };
 
   return (
-    <header className="p-5 border-b border-b-zinc-800 bg-zinc-200 dark:bg-stone-900 w-full flex flex-row justify-between mb-15 items-center px-5">
+    <header className="md:p-2 md:border-b border-b-zinc-800 bg-none border-none md:bg-zinc-200 w-full flex flex-row justify-between items-center px-5">
       <nav className="h-full flex flex-row justify-between w-full">
-        <Link className="h-full" href="/">
+        <Link className="h-18 flex justify-center" href="/">
           <RellSoftLogo
             animationLength={1}
             initialAnimation={1}
-            classNames="h-full stroke-30 stroke-rellsoft-orange dark:stroke-rellsoft-green"
+            classNames="w-2/3 h-full stroke-30 stroke-rellsoft-orange dark:stroke-rellsoft-green hidden md:flex"
           />
         </Link>
         <Suspense>
-          <NavLinks />
+          <DesktopNavLinks />
         </Suspense>
       </nav>
 
@@ -107,23 +186,9 @@ const Header = () => {
         animate={mobileNavToggle ? "open" : "closed"}
         className="flex flex-col fixed h-full w-screen bg-stone-200 dark:bg-stone-950 left-32 right-0 top-0 z-50"
       >
-        <ul className="flex flex-col text-rellsoft-orange dark:text-rellsoft-green font-extrabold mt-40 space-y-3 p-4 text-4xl uppercase tracking-tight">
-          <li>
-            <Link href={"/blog"}>Home</Link>
-          </li>
-          <li>
-            <Link href={"/blog"}>Blog</Link>
-          </li>
-          <li>
-            <Link href={"/blog"}>Projects</Link>
-          </li>
-          <li>
-            <Link href={"/blog"}>Contact</Link>
-          </li>
-          <li>
-            <Link href={"/blog"}>Resume</Link>
-          </li>
-        </ul>
+        <Suspense>
+          <MobileNavLinks />
+        </Suspense>
       </motion.nav>
       <motion.div
         variants={mobileNavOpacityVariant}

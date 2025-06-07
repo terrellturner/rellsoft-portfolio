@@ -65,7 +65,7 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="container grow w-11/12 md:max-w-3xl mx-auto bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border"
     >
-      <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 truncate rounded-t-2xl bg-zinc-400">
+      <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 truncate rounded-t-2xl bg-zinc-300">
         {post?.slug?.current}.tsx
       </div>
       <div className="p-5 md:p-10 flex flex-col space-y-5 py-10">
