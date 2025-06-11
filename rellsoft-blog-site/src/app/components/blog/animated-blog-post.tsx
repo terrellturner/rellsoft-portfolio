@@ -77,7 +77,7 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
             <img
               src={post.imageUrl}
               alt={post?.title}
-              className="aspect-video rounded-xl"
+              className="aspect-video rounded-xl mx-auto w-full"
               width="550"
               height="310"
             />

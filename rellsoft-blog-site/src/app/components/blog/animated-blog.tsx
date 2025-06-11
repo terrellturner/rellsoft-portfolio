@@ -57,8 +57,11 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
                 className="p-3 md:pl-5 group flex flex-row md:justify-between items-center border border-stone-500 dark:border-zinc-500 rounded-2xl"
                 key={post._id}
               >
-                <Link className="w-full " href={`/blog/${post.slug.current}`}>
-                  <h2 className="text-lg truncate grow md:w-sm font-semibold text-rellsoft-orange dark:text-rellsoft-green group-hover:underline md:text-2xl">
+                <Link
+                  className="w-full space-y-2"
+                  href={`/blog/${post.slug.current}`}
+                >
+                  <h2 className="text-lg overflow-ellipsis line-clamp-2 grow md:w-lg font-semibold text-rellsoft-orange dark:text-rellsoft-green group-hover:underline md:text-2xl">
                     {post.title}
                   </h2>
                   <p className="group dark:text-zinc-400 text-stone-800">
