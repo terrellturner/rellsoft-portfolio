@@ -46,21 +46,8 @@ export default defineType({
     }),
     defineField({
       name: 'body',
-      type: 'array',
-      of: [
-        {type: 'blockContent'},
-        {
-          type: 'image',
-          options: {hotspot: true},
-          fields: [
-            {
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative text',
-            },
-          ],
-        },
-      ],
+      title: 'Body',
+      type: 'blockContent',
     }),
   ],
 
