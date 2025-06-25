@@ -1,5 +1,3 @@
-import React from "react";
-
 const slugify = (text: string) => {
   return text
     .toLowerCase()
