@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'rellsoft-blog',
 
-  projectId: process.env.SANITY_PROJECT_ID || '',
-  dataset: process.env.SANITY_DATASET || '',
+  projectId: 'kf5he8ng',
+  dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
 
