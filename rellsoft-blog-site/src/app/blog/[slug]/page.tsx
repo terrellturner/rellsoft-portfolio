@@ -4,6 +4,7 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/app/sanity/client";
 import AnimatedBlogPost from "@/app/components/blog/animated-blog-post";
 import type { Post } from "@/app/types/Post";
+import { notFound } from "next/navigation";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
         ...,
@@ -71,7 +72,7 @@ export default async function PostPage({
   const { slug } = await params;
   const post = await getPost(slug);
 
-  if (!post) return <div>404 - Post not found</div>;
+  if (!post) return notFound();
 
   const blogPost: Post = {
     _id: post?._id || "",
