@@ -3,12 +3,18 @@
 import React from "react";
 import Link from "next/link";
 import { client } from "@/app/sanity/client";
-import { PortableText, PortableTextTypeComponentProps } from "next-sanity";
+import {
+  PortableTextComponents,
+  toPlainText,
+  PortableText,
+  PortableTextTypeComponentProps,
+} from "next-sanity";
 import { motion } from "motion/react";
 import type { TypedObject } from "@portabletext/types";
 import { getImageDimensions } from "@sanity/asset-utils";
 import urlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/asset-utils";
+import slugify from "@/app/lib/slugify";
 
 interface Post {
   _id: string;
@@ -18,6 +24,7 @@ interface Post {
   imageUrl: string;
   body: TypedObject[];
   categories: { title: string }[];
+  headings: { style: string; text: string }[];
 }
 
 type ImageValue = SanityImageSource & {
@@ -51,13 +58,29 @@ const ImageComponent = ({
   );
 };
 
-const components = {
+const components: PortableTextComponents = {
   types: {
     image: ImageComponent,
+  },
+  block: {
+    h1: ({ value, children }) => {
+      const id = slugify(toPlainText(value));
+      return <h1 id={id}>{children}</h1>;
+    },
+    h3: ({ value, children }) => {
+      const id = slugify(toPlainText(value));
+      return <h3 id={id}>{children}</h3>;
+    },
+    h4: ({ value, children }) => {
+      const id = slugify(toPlainText(value));
+      return <h4 id={id}>{children}</h4>;
+    },
   },
 };
 
 const AnimatedBlogPost = ({ post }: { post: Post }) => {
+  console.log(post);
+
   return (
     <motion.main
       initial={{ opacity: 0, y: -10 }}

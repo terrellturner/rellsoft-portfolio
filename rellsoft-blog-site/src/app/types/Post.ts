@@ -8,4 +8,5 @@ export type Post = {
   body: PortableTextBlock[];
   imageUrl: string;
   categories: { title: string }[];
+  headings: { style: string; text: string }[];
 };

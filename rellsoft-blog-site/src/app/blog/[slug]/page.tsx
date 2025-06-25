@@ -5,7 +5,10 @@ import { client } from "@/app/sanity/client";
 import AnimatedBlogPost from "@/app/components/blog/animated-blog-post";
 import type { Post } from "@/app/types/Post";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+        ...,
+        "headings": body[style in ["h1","h3", "h4"]]{style, "text": children[0].text}
+        }`;
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -27,9 +30,35 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPost(slug);
 
+  const title = post?.title ?? "Untitled";
+  const description = post?.description ?? "RellSoft";
+  const imageUrl =
+    urlFor(post?.mainImage)?.width(1200)?.height(630)?.url() || "";
+
   return {
-    title: post?.title || "404!",
-    description: post?.description || "RellSoft",
+    title,
+    description,
+    openGraph: {
+      title,
+      url: `https://rellsoft.dev/blog/${slug}`,
+      siteName: `RellSoft`,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: "en_US",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -51,6 +80,7 @@ export default async function PostPage({
     body: post?.body || [],
     imageUrl: urlFor(post?.mainImage)?.width(550)?.height(310)?.url() || "",
     categories: post?.categories,
+    headings: post?.headings,
   };
 
   return <AnimatedBlogPost post={blogPost} />;
