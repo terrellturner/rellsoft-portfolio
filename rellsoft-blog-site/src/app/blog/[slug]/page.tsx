@@ -40,8 +40,9 @@ export async function generateMetadata({
     description,
     openGraph: {
       title,
+      description,
       url: `https://rellsoft.dev/blog/${slug}`,
-      siteName: `RellSoft`,
+      siteName: `Terrell Turner`,
       images: [
         {
           url: imageUrl,

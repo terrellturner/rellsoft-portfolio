@@ -28,7 +28,7 @@ const AnimatedBlog = ({ posts, categorySlug }: AnimatedBlogProps) => {
     >
       <div className="max-w-4xl md:w-full w-11/12 container grow pb-12 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
         <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-300 rounded-t-2xl">
-          blog.tsx
+          blog.md
         </div>
         <div className="p-5 md:p-10">
           <h1 className="text-xl md:text-4xl font-bold mb-2 flex flex-row dark:text-rellsoft-green text-stone-700">

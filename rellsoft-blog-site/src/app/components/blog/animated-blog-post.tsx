@@ -90,9 +90,9 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
     >
       <div className="container grow w-11/12 md:max-w-3xl mx-auto bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
         <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 truncate rounded-t-2xl bg-zinc-300">
-          {post?.slug?.current}.tsx
+          {post?.slug?.current}.md
         </div>
-        <div className="p-5 md:p-10 flex flex-col space-y-5 py-10">
+        <div className="p-5 md:p-10 flex flex-col space-y-5 py-10 md:mx-10">
           <Link href="/blog" className="hover:underline">
             ← Back to posts
           </Link>
@@ -107,7 +107,9 @@ const AnimatedBlogPost = ({ post }: { post: Post }) => {
           )}
           <h1 className="text-xl md:text-4xl font-bold mb-8">{post?.title}</h1>
           <div className="prose prose-stone dark:prose-invert  break-words mx-auto w-full">
-            <p>Published: {new Date(post?.publishedAt).toLocaleDateString()}</p>
+            <p className="text-sm font-bold">
+              Published: {new Date(post?.publishedAt).toLocaleDateString()}
+            </p>
             {Array.isArray(post?.body) && (
               <PortableText value={post?.body} components={components} />
             )}
