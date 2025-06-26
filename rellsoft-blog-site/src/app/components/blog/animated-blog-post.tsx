@@ -79,8 +79,6 @@ const components: PortableTextComponents = {
 };
 
 const AnimatedBlogPost = ({ post }: { post: Post }) => {
-  console.log(post);
-
   return (
     <motion.main
       initial={{ opacity: 0, y: -10 }}
