@@ -22,7 +22,7 @@ export default function IndexPage() {
       <section
         aria-label="Home"
         id="hero"
-        className="z-30 flex-col-reverse text-center transition-all duration-500 lg:text-left container relative place-items-center justify-center space-y-6 flex w-full lg:flex-row mx-auto md:max-w-screen-3xl px-5 lg:justify-around text-stone-800 dark:text-zinc-100"
+        className="z-30 flex-col-reverse text-center h-full transition-all duration-500 lg:text-left container relative place-items-center justify-center space-y-6 flex w-full lg:flex-row mx-auto md:max-w-screen-3xl px-5 lg:justify-around text-stone-800 dark:text-zinc-100"
       >
         <div className="lg:p-5 flex flex-col justify-center">
           <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
@@ -100,7 +100,7 @@ export default function IndexPage() {
         <RellSoftLogo
           animationLength={1}
           initialAnimation={0}
-          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green md:w-1/3 w-2/3 py-10 md:py-0"
+          classNames="stroke-10 stroke-rellsoft-orange dark:stroke-rellsoft-green h-[20rem] lg:h-[28rem] 2xl:h-[38rem] transition-all ease-in-out duration-500"
         />
       </section>
     </motion.main>

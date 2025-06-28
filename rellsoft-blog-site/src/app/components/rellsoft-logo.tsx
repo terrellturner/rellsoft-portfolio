@@ -20,6 +20,7 @@ const RellSoftLogo = ({
         viewBox="0 0 932.41547 997.18066"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="h-full"
       >
         <motion.path
           initial={{ pathLength: initialAnimation }}
