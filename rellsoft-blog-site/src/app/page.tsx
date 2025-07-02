@@ -38,7 +38,7 @@ export default function IndexPage() {
                 full-stack developer
               </span>{" "}
               with a passion for practical systems, clean UI, and building
-              things that people actually use.
+              things designed for people to actually use.
             </h3>
             <h4>
               Currently, I&#39;m using{" "}
@@ -47,13 +47,13 @@ export default function IndexPage() {
               </span>
               ,{" "}
               <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                NextJS
+                Vite
               </span>
               , and{" "}
               <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
                 Tailwind
               </span>{" "}
-              to create supercharged websites in{" "}
+              to create robust websites in{" "}
               <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
                 React
               </span>
