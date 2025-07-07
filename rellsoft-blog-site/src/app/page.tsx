@@ -10,6 +10,7 @@ import {
 import "@/app/globals.css";
 import { motion } from "motion/react";
 import RellSoftLogo from "./components/rellsoft-logo";
+import WordEmphasis from "./components/ui/word-emphasis";
 
 export default function IndexPage() {
   return (
@@ -33,31 +34,22 @@ export default function IndexPage() {
               My name is Terrell.
             </h2>
             <h3 className="text-md ml-0.5">
-              I&#39;m a{" "}
-              <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                full-stack developer
-              </span>{" "}
-              with a passion for practical systems, clean UI, and building
-              things designed for people to actually use.
+              I&#39;m a <WordEmphasis>full-stack developer</WordEmphasis> with a
+              passion for practical systems, clean UI, and building things
+              designed for people to actually use.
             </h3>
             <h4>
-              Currently, I&#39;m using{" "}
-              <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                TypeScript
-              </span>
-              ,{" "}
-              <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                Vite
-              </span>
-              , and{" "}
-              <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                Tailwind
-              </span>{" "}
-              to create robust websites in{" "}
-              <span className="font-bold decoration-2 underline decoration-rellsoft-orange dark:decoration-rellsoft-green hover:decoration-zinc-300 transition-color duration-700">
-                React
-              </span>
-              .
+              I love using <WordEmphasis>TypeScript</WordEmphasis>,
+              <WordEmphasis>Vite</WordEmphasis>, and
+              <WordEmphasis>Tailwind</WordEmphasis> to create robust websites in
+              <WordEmphasis>React</WordEmphasis> and
+              <WordEmphasis>Next.js</WordEmphasis>.
+            </h4>
+            <h4>
+              Currently, I'm using <WordEmphasis>Express+TS</WordEmphasis> to
+              build powerful <WordEmphasis>Node.js</WordEmphasis> servers with
+              <WordEmphasis>Prisma</WordEmphasis> and
+              <WordEmphasis>PostgreSQL</WordEmphasis>.
             </h4>
             <div className=" w-full flex flex-row leading-0 flex-wrap md:flex-nowrap justify-center lg:justify-around lg:max-w-lg">
               <Link
