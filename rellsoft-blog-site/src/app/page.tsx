@@ -46,8 +46,9 @@ export default function IndexPage() {
               <WordEmphasis>Next.js</WordEmphasis>.
             </h4>
             <h4>
-              Currently, I'm using <WordEmphasis>Express+TS</WordEmphasis> to
-              build powerful <WordEmphasis>Node.js</WordEmphasis> servers with
+              Currently, I&#39;m using <WordEmphasis>Express+TS</WordEmphasis>{" "}
+              to build powerful <WordEmphasis>Node.js</WordEmphasis> servers
+              with
               <WordEmphasis>Prisma</WordEmphasis> and
               <WordEmphasis>PostgreSQL</WordEmphasis>.
             </h4>
