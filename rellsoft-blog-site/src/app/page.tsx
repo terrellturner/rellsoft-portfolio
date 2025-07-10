@@ -11,8 +11,27 @@ import "@/app/globals.css";
 import { motion } from "motion/react";
 import RellSoftLogo from "./components/rellsoft-logo";
 import WordEmphasis from "./components/ui/word-emphasis";
+import SkillBadge from "./components/ui/skill-badge";
+import {
+  SiExpress,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPrisma,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+  SiCss3,
+} from "react-icons/si";
+import { RiNextjsFill } from "react-icons/ri";
+import { TbBrandThreejs } from "react-icons/tb";
+import { useState } from "react";
 
 export default function IndexPage() {
+  const [skillsTabIndex, setSkillsTabIndex] = useState(0);
+
   return (
     <motion.main
       initial={{ opacity: 0, y: -10 }}
@@ -25,33 +44,19 @@ export default function IndexPage() {
         id="hero"
         className="z-30 flex-col-reverse text-center h-full transition-all duration-500 lg:text-left container relative place-items-center justify-center space-y-6 flex w-full lg:flex-row mx-auto md:max-w-screen-3xl px-5 lg:justify-around text-stone-800 dark:text-zinc-100"
       >
-        <div className="lg:p-5 flex flex-col justify-center">
-          <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
-            Hello!
-          </h1>
-          <div className="flex flex-col space-y-8 justify-center p-2 lg:max-w-lg ">
+        <div className="lg:p-5 flex flex-col justify-center space-y-8 lg:max-w-xl items-center">
+          <div className="flex flex-col space-y-6 justify-center p-2">
+            <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
+              Hello!
+            </h1>
             <h2 className="text-2xl font-bold md:text-5xl">
               My name is Terrell.
             </h2>
             <h3 className="text-md ml-0.5">
               I&#39;m a <WordEmphasis>full-stack developer</WordEmphasis> with a
-              passion for practical systems, clean UI, and building things
-              designed for people to actually use.
+              passion for practical systems, clean UI, and building things that
+              deliver practical value.
             </h3>
-            <h4>
-              I love using <WordEmphasis>TypeScript</WordEmphasis>,
-              <WordEmphasis>Vite</WordEmphasis>, and
-              <WordEmphasis>Tailwind</WordEmphasis> to create robust websites in
-              <WordEmphasis>React</WordEmphasis> and
-              <WordEmphasis>Next.js</WordEmphasis>.
-            </h4>
-            <h4>
-              Currently, I&#39;m using <WordEmphasis>Express+TS</WordEmphasis>{" "}
-              to build powerful <WordEmphasis>Node.js</WordEmphasis> servers
-              with
-              <WordEmphasis>Prisma</WordEmphasis> and
-              <WordEmphasis>PostgreSQL</WordEmphasis>.
-            </h4>
             <div className=" w-full flex flex-row leading-0 flex-wrap md:flex-nowrap justify-center lg:justify-around lg:max-w-lg">
               <Link
                 href={"mailto:terrell@rellsoft.dev"}
@@ -89,6 +94,190 @@ export default function IndexPage() {
               </Link>
             </div>
           </div>
+          <div className="hidden md:inline w-7/8 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
+            <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-300 rounded-t-2xl">
+              skills.md
+            </div>
+            <div className="flex flex-row place-items-center justify-center m-4 h-14 bg-stone-800 rounded-2xl relative">
+              <div
+                className="absolute transition-transform duration-300 ease-in-out flex-1 bg-rellsoft-green h-full z-10 rounded-2xl w-1/3 -translate-x-full"
+                style={{ transform: `translateX(${skillsTabIndex * 100}%)` }}
+              ></div>
+              <button
+                onClick={() => setSkillsTabIndex(0)}
+                className={`p-4 flex-1 text-center rounded-2xl font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 0 ? "text-stone-800" : `text-rellsoft-green`}`}
+              >
+                Frontend
+              </button>
+              <button
+                onClick={() => setSkillsTabIndex(1)}
+                className={`p-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 1 ? "text-stone-800" : `text-rellsoft-green`}`}
+              >
+                Backend
+              </button>
+              <button
+                onClick={() => setSkillsTabIndex(2)}
+                className={`p-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 2 ? "text-stone-800" : `text-rellsoft-green`}`}
+              >
+                Tools
+              </button>
+            </div>
+            <article className="p-2 flex flex-col overflow-hidden">
+              {/* Frontend skills */}
+              {skillsTabIndex === 0 && (
+                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
+                  <SkillBadge>
+                    <SiJavascript />
+                    <span>JavaScript (ES6+)</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiTypescript />
+                    <span>TypeScript</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiReact />
+                    <span>React</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <RiNextjsFill />
+                    <span>Next.js</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiTailwindcss />
+                    <span>Tailwind</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiHtml5 />
+                    <span>HTML5</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiCss3 />
+                    <span>CCS3</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <TbBrandThreejs />
+                    <span>Three.js</span>
+                  </SkillBadge>
+                </div>
+              )}
+              {/* Backend skills */}
+              {skillsTabIndex === 1 && (
+                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
+                  <SkillBadge>
+                    <SiExpress />
+                    <span>Express.js</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiNodedotjs />
+                    <span>Node.js</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiMongodb />
+                    <span>MongoDB</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiPostgresql />
+                    <span>PostgreSQL</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiPrisma />
+                    <span>Prisma</span>
+                  </SkillBadge>
+                </div>
+              )}
+              {/* Tools skills */}
+              {skillsTabIndex === 2 && (
+                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
+                  <SkillBadge>
+                    <SiJavascript />
+                    <span>JavaScript</span>
+                  </SkillBadge>
+                  <SkillBadge>
+                    <SiTypescript />
+                    <span>TypeScript</span>
+                  </SkillBadge>
+                </div>
+              )}
+            </article>
+          </div>
+
+          <article className="p-2 flex flex-col md:hidden place-items-center space-y-8">
+            <div className="w-full">
+              <h4 className="text-2xl font-extrabold">Frontend</h4>
+              <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
+                <SkillBadge>
+                  <SiJavascript />
+                  <span>JavaScript (ES6+)</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiTypescript />
+                  <span>TypeScript</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiReact />
+                  <span>React</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <RiNextjsFill />
+                  <span>Next.js</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiTailwindcss />
+                  <span>Tailwind</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiHtml5 />
+                  <span>HTML5</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiCss3 />
+                  <span>CCS3</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <TbBrandThreejs />
+                  <span>Three.js</span>
+                </SkillBadge>
+              </div>
+            </div>
+            <div className="w-full">
+              <h4 className="text-2xl font-extrabold">Backend</h4>
+              <div className="flex flex-row p-5 pt-4 space-x-3 flex-wrap justify-center">
+                <SkillBadge>
+                  <SiExpress />
+                  <span>Express.js</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiNodedotjs />
+                  <span>Node.js</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiMongodb />
+                  <span>MongoDB</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiPostgresql />
+                  <span>PostgreSQL</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiPrisma />
+                  <span>Prisma</span>
+                </SkillBadge>
+              </div>
+            </div>
+            <div className="">
+              <h4 className="text-2xl font-extrabold">Languages & Tools</h4>
+              <div className="flex flex-row p-5 pt-4 space-x-3 justify-center">
+                <SkillBadge>
+                  <SiJavascript />
+                  <span>JavaScript</span>
+                </SkillBadge>
+                <SkillBadge>
+                  <SiTypescript />
+                  <span>TypeScript</span>
+                </SkillBadge>
+              </div>
+            </div>
+          </article>
         </div>
         <RellSoftLogo
           animationLength={1}
