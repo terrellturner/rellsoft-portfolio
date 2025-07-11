@@ -8,7 +8,7 @@ import {
   PiVideoCamera,
 } from "react-icons/pi";
 import "@/app/globals.css";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import RellSoftLogo from "./components/rellsoft-logo";
 import WordEmphasis from "./components/ui/word-emphasis";
 import SkillBadge from "./components/ui/skill-badge";
@@ -46,7 +46,7 @@ export default function IndexPage() {
       >
         <div className="lg:p-5 flex flex-col justify-center space-y-8 lg:max-w-xl items-center">
           <div className="flex flex-col space-y-6 justify-center p-2">
-            <h1 className="text-8xl font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
+            <h1 className="text-8xl -ml-1 p-0 font-extrabold md:text-9xl text-rellsoft-orange dark:text-rellsoft-green ">
               Hello!
             </h1>
             <h2 className="text-2xl font-bold md:text-5xl">
@@ -94,190 +94,145 @@ export default function IndexPage() {
               </Link>
             </div>
           </div>
-          <div className="hidden md:inline w-7/8 bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
+          {/* Skills */}
+          <div className="hidden w-11/12 md:inline bg-zinc-100 dark:bg-stone-950 rounded-2xl border-zinc-600 border">
             <div className=" p-2 font-mono pl-5 dark:bg-zinc-900 bg-zinc-300 rounded-t-2xl">
               skills.md
             </div>
-            <div className="flex flex-row place-items-center justify-center m-4 h-14 bg-stone-800 rounded-2xl relative">
+            <div className="flex flex-row place-items-center justify-center m-4 h-14 bg-stone-300 dark:bg-stone-800 rounded-2xl relative">
               <div
-                className="absolute transition-transform duration-300 ease-in-out flex-1 bg-rellsoft-green h-full z-10 rounded-2xl w-1/3 -translate-x-full"
+                className="absolute transition-transform duration-300 ease-in-out flex-1 bg-rellsoft-orange dark:bg-rellsoft-green h-full z-10 rounded-2xl w-1/3 -translate-x-full"
                 style={{ transform: `translateX(${skillsTabIndex * 100}%)` }}
               ></div>
               <button
                 onClick={() => setSkillsTabIndex(0)}
-                className={`p-4 flex-1 text-center rounded-2xl font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 0 ? "text-stone-800" : `text-rellsoft-green`}`}
+                className={`p-4 flex-1 text-center rounded-2xl font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 0 ? "dark:text-stone-800 text-stone-50" : `text-stone-900 dark:text-rellsoft-green`}`}
               >
                 Frontend
               </button>
               <button
                 onClick={() => setSkillsTabIndex(1)}
-                className={`p-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 1 ? "text-stone-800" : `text-rellsoft-green`}`}
+                className={`p-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 1 ? "dark:text-stone-800 text-stone-50" : `text-stone-900 dark:text-rellsoft-green`}`}
               >
                 Backend
               </button>
               <button
                 onClick={() => setSkillsTabIndex(2)}
-                className={`p-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 2 ? "text-stone-800" : `text-rellsoft-green`}`}
+                className={`p-4 leading-4 flex-1 text-center font-bold text-lg z-20 cursor-pointer ${skillsTabIndex === 2 ? "dark:text-stone-800 text-stone-50" : `text-stone-900 dark:text-rellsoft-green`}`}
               >
-                Tools
+                Tools & Languages
               </button>
             </div>
             <article className="p-2 flex flex-col overflow-hidden">
-              {/* Frontend skills */}
-              {skillsTabIndex === 0 && (
-                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
-                  <SkillBadge>
-                    <SiJavascript />
-                    <span>JavaScript (ES6+)</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiTypescript />
-                    <span>TypeScript</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiReact />
-                    <span>React</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <RiNextjsFill />
-                    <span>Next.js</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiTailwindcss />
-                    <span>Tailwind</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiHtml5 />
-                    <span>HTML5</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiCss3 />
-                    <span>CCS3</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <TbBrandThreejs />
-                    <span>Three.js</span>
-                  </SkillBadge>
-                </div>
-              )}
-              {/* Backend skills */}
-              {skillsTabIndex === 1 && (
-                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
-                  <SkillBadge>
-                    <SiExpress />
-                    <span>Express.js</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiNodedotjs />
-                    <span>Node.js</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiMongodb />
-                    <span>MongoDB</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiPostgresql />
-                    <span>PostgreSQL</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiPrisma />
-                    <span>Prisma</span>
-                  </SkillBadge>
-                </div>
-              )}
-              {/* Tools skills */}
-              {skillsTabIndex === 2 && (
-                <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
-                  <SkillBadge>
-                    <SiJavascript />
-                    <span>JavaScript</span>
-                  </SkillBadge>
-                  <SkillBadge>
-                    <SiTypescript />
-                    <span>TypeScript</span>
-                  </SkillBadge>
-                </div>
-              )}
+              <AnimatePresence mode="wait">
+                {/* Frontend skills */}
+                {skillsTabIndex === 0 && (
+                  <motion.div
+                    key={skillsTabIndex}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 200, opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="flex flex-row p-3 pt-4 flex-wrap"
+                    transition={{
+                      duration: 0.5,
+                      ease: "circInOut",
+                    }}
+                  >
+                    <SkillBadge>
+                      <SiJavascript />
+                      <span>JavaScript (ES6+)</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiTypescript />
+                      <span>TypeScript</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiReact />
+                      <span>React</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <RiNextjsFill />
+                      <span>Next.js</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiTailwindcss />
+                      <span>Tailwind</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiHtml5 />
+                      <span>HTML5</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiCss3 />
+                      <span>CCS3</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <TbBrandThreejs />
+                      <span>Three.js</span>
+                    </SkillBadge>
+                  </motion.div>
+                )}
+                {/* Backend skills */}
+                {skillsTabIndex === 1 && (
+                  <motion.div
+                    key={skillsTabIndex}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 150, opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="flex flex-row p-3 pt-4 flex-wrap"
+                    transition={{
+                      duration: 0.5,
+                      ease: "circInOut",
+                    }}
+                  >
+                    <SkillBadge>
+                      <SiExpress />
+                      <span>Express.js</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiNodedotjs />
+                      <span>Node.js</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiMongodb />
+                      <span>MongoDB</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiPostgresql />
+                      <span>PostgreSQL</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiPrisma />
+                      <span>Prisma</span>
+                    </SkillBadge>
+                  </motion.div>
+                )}
+                {/* Tools skills */}
+                {skillsTabIndex === 2 && (
+                  <motion.div
+                    key={skillsTabIndex}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 100, opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="flex flex-row p-3 pt-4 flex-wrap"
+                    transition={{
+                      duration: 0.5,
+                      ease: "circInOut",
+                    }}
+                  >
+                    <SkillBadge>
+                      <SiJavascript />
+                      <span>JavaScript</span>
+                    </SkillBadge>
+                    <SkillBadge>
+                      <SiTypescript />
+                      <span>TypeScript</span>
+                    </SkillBadge>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </article>
           </div>
-
-          <article className="p-2 flex flex-col md:hidden place-items-center space-y-8">
-            <div className="w-full">
-              <h4 className="text-2xl font-extrabold">Frontend</h4>
-              <div className="flex flex-row p-5 pt-4 flex-wrap justify-center">
-                <SkillBadge>
-                  <SiJavascript />
-                  <span>JavaScript (ES6+)</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiTypescript />
-                  <span>TypeScript</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiReact />
-                  <span>React</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <RiNextjsFill />
-                  <span>Next.js</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiTailwindcss />
-                  <span>Tailwind</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiHtml5 />
-                  <span>HTML5</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiCss3 />
-                  <span>CCS3</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <TbBrandThreejs />
-                  <span>Three.js</span>
-                </SkillBadge>
-              </div>
-            </div>
-            <div className="w-full">
-              <h4 className="text-2xl font-extrabold">Backend</h4>
-              <div className="flex flex-row p-5 pt-4 space-x-3 flex-wrap justify-center">
-                <SkillBadge>
-                  <SiExpress />
-                  <span>Express.js</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiNodedotjs />
-                  <span>Node.js</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiMongodb />
-                  <span>MongoDB</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiPostgresql />
-                  <span>PostgreSQL</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiPrisma />
-                  <span>Prisma</span>
-                </SkillBadge>
-              </div>
-            </div>
-            <div className="">
-              <h4 className="text-2xl font-extrabold">Languages & Tools</h4>
-              <div className="flex flex-row p-5 pt-4 space-x-3 justify-center">
-                <SkillBadge>
-                  <SiJavascript />
-                  <span>JavaScript</span>
-                </SkillBadge>
-                <SkillBadge>
-                  <SiTypescript />
-                  <span>TypeScript</span>
-                </SkillBadge>
-              </div>
-            </div>
-          </article>
         </div>
         <RellSoftLogo
           animationLength={1}
